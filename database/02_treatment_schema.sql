@@ -1,12 +1,12 @@
--- 治疗方案页面数据库设计 DDL
+-- 套餐页面数据库设计 DDL
 
--- 1. 治疗方案基本信息表
-CREATE TABLE treatment_plans (
+-- 1. 套餐基本信息表
+CREATE TABLE packages (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    treatment_name VARCHAR(200) NOT NULL COMMENT '治疗项目名称',
-    treatment_name_en VARCHAR(200) COMMENT '治疗项目英文名称',
+    package_name VARCHAR(200) NOT NULL COMMENT '套餐名称',
+    package_name_en VARCHAR(200) COMMENT '套餐英文名称',
     
-    -- 医院信息
+    -- 页面标题信息
     hospital_id BIGINT NOT NULL COMMENT '医院ID',
     hospital_name VARCHAR(200) NOT NULL COMMENT '医院中文全称',
     hospital_name_en VARCHAR(200) COMMENT '医院英文全称',
@@ -14,14 +14,15 @@ CREATE TABLE treatment_plans (
     hospital_level VARCHAR(50) DEFAULT '三甲' COMMENT '医院等级',
     specialty_tags JSON COMMENT '专科特色标签数组',
     
-    -- 价格信息
+    -- 价格信息（metaso搜索获取）
     total_price DECIMAL(12,2) COMMENT '套餐总价（人民币）',
     discount_price DECIMAL(12,2) COMMENT '优惠价格',
     international_price_comparison TEXT COMMENT '国际价格比对分析',
+    price_source VARCHAR(100) COMMENT '价格来源（metaso等）',
     
     -- 风险告知信息（metaso搜索获取）
-    indications TEXT COMMENT '治疗适应症',
-    contraindications TEXT COMMENT '治疗禁忌症',
+    indications TEXT COMMENT '套餐适应症',
+    contraindications TEXT COMMENT '套餐禁忌症',
     surgical_risks TEXT COMMENT '手术风险说明',
     complications TEXT COMMENT '并发症说明',
     
@@ -32,14 +33,14 @@ CREATE TABLE treatment_plans (
     
     FOREIGN KEY (hospital_id) REFERENCES hospitals(id),
     INDEX idx_hospital_city (hospital_id, city),
-    INDEX idx_treatment_name (treatment_name),
+    INDEX idx_package_name (package_name),
     INDEX idx_status (status)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='治疗方案基本信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='套餐基本信息表';
 
--- 2. 治疗方案医生团队表
-CREATE TABLE treatment_doctors (
+-- 2. 套餐医生团队表
+CREATE TABLE package_doctors (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    treatment_id BIGINT NOT NULL COMMENT '治疗方案ID',
+    package_id BIGINT NOT NULL COMMENT '套餐ID',
     doctor_id BIGINT NOT NULL COMMENT '医生ID',
     
     -- AI生成的医生团队信息
@@ -57,15 +58,15 @@ CREATE TABLE treatment_doctors (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (treatment_id) REFERENCES treatment_plans(id) ON DELETE CASCADE,
+    FOREIGN KEY (package_id) REFERENCES packages(id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_id) REFERENCES doctors(id),
-    INDEX idx_treatment_status (treatment_id, status)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='治疗方案医生团队表';
+    INDEX idx_package_status (package_id, status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='套餐医生团队表';
 
 -- 3. 价格历史记录表（可选，用于价格变动追踪）
-CREATE TABLE treatment_price_history (
+CREATE TABLE package_price_history (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    treatment_id BIGINT NOT NULL COMMENT '治疗方案ID',
+    package_id BIGINT NOT NULL COMMENT '套餐ID',
     total_price DECIMAL(12,2) COMMENT '总价',
     discount_price DECIMAL(12,2) COMMENT '优惠价',
     price_source VARCHAR(100) COMMENT '价格来源（metaso等）',
@@ -73,11 +74,11 @@ CREATE TABLE treatment_price_history (
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (treatment_id) REFERENCES treatment_plans(id) ON DELETE CASCADE,
-    INDEX idx_treatment_date (treatment_id, effective_date)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='治疗方案价格历史记录表';
+    FOREIGN KEY (package_id) REFERENCES packages(id) ON DELETE CASCADE,
+    INDEX idx_package_date (package_id, effective_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='套餐价格历史记录表';
 
--- 扩展全局配置表（添加治疗方案相关配置）
+-- 扩展全局配置表（添加套餐相关配置）
 INSERT INTO global_configs (config_key, config_value, config_type, description) VALUES
 -- 医疗服务承诺（固定页面内容）
 ('medical_service_commitments', '{}', 'static_content', '核心医疗服务承诺框架'),
@@ -100,12 +101,12 @@ INSERT INTO global_configs (config_key, config_value, config_type, description) 
 ('quality_assurance_system', '{}', 'static_content', '风险告知和质量保障'),
 
 -- FAQ（全局唯一，AI生成）
-('treatment_faq_localized', '{}', 'faq', 'FAQ本土化设计');
+('package_faq_localized', '{}', 'faq', 'FAQ本土化设计');
 
--- 创建视图：治疗方案完整信息视图
-CREATE VIEW treatment_plan_full_info AS
+-- 创建视图：套餐完整信息视图
+CREATE VIEW package_full_info AS
 SELECT 
-    tp.*,
+    p.*,
     h.name as hospital_name_full,
     h.name_en as hospital_name_en_full,
     h.history as hospital_history,

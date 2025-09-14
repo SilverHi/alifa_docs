@@ -1,13 +1,13 @@
-# 治疗方案页面数据需求文档
-# Treatment Plan Page Data Requirements Document
+# 套餐页面数据需求文档
+# Package Page Data Requirements Document
 
 ## 一、页面核心板块结构
 ## I. Core Page Module Structure
 
-治疗方案页面应包含以下核心板块：
-The treatment plan page should include the following core modules:
-1. 页面标题结构
-   Page title structure
+套餐页面应包含以下核心板块：
+The package page should include the following core modules:
+1. 页面标题结构模板
+   Page title structure template
 2. 核心医疗服务承诺框架
    Core medical service commitment framework
 3. 价格与医保结构
@@ -24,18 +24,18 @@ The treatment plan page should include the following core modules:
    Chinese characteristic additional service framework
 9. 风险告知和质量保障
    Risk notification and quality assurance
-10. 套餐详情
-    Package details
+10. 套餐详情中国化定制
+    Package details Chinese customization
 11. FAQ本土化设计
     FAQ localization design
 
 ## 二、各板块数据要求
 ## II. Data Requirements for Each Module
 
-### 2.1 页面标题结构
-### 2.1 Page Title Structure
-包含以下要素：
-Contains the following elements:
+### 2.1 页面标题结构模板
+### 2.1 Page Title Structure Template
+为[套餐名称]创建页面标题，包含：
+Create page title for [Package Name], including:
 - 执行医院的全称（中英文名称）
   Full name of executing hospital (Chinese and English names)
 - 城市地理位置（一线城市优先：北京/上海/广州/深圳）
@@ -45,11 +45,13 @@ Contains the following elements:
 - 专科特色标签（如：国家临床重点专科）
   Specialty feature tags (e.g., National Clinical Key Specialty)
 
-示例格式：《[治疗项目] - [三甲医院全称] - [城市名]》
-Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] - [City Name]》
+示例格式：《[套餐名称] - [三甲医院全称] - [城市名]》
+Example format: 《[Package Name] - [Grade A Tertiary Hospital Full Name] - [City Name]》
 
 ### 2.2 核心医疗服务承诺框架
 ### 2.2 Core Medical Service Commitment Framework
+创建中国特色医疗服务保障体系，包含：
+Create Chinese characteristic medical service guarantee system, including:
 **注：固定在页面中显示固定的内容，不需要获取数据**
 **Note: Fixed content displayed on the page, no data acquisition needed**
 - 国家卫健委资质认证
@@ -60,8 +62,8 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
   Expert appointment guarantee
 - 医保/异地就医结算支持
   Medical insurance/cross-regional medical settlement support
-- 中西医结合治疗方案
-  Integrated traditional Chinese and Western medicine treatment plan
+- 中西医结合套餐方案
+  Integrated traditional Chinese and Western medicine package plan
 - 术后康复指导
   Post-operative rehabilitation guidance
 - 随访服务体系
@@ -69,8 +71,13 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 医疗纠纷处理机制
   Medical dispute handling mechanism
 
+关键词：权威认证、专业保障、全程服务、安全可靠
+Keywords: Authoritative certification, professional guarantee, full-service, safe and reliable
+
 ### 2.3 价格与医保结构
 ### 2.3 Price and Medical Insurance Structure
+设计符合中国医疗支付体系的价格框架：
+Design price framework that conforms to China's medical payment system:
 - 套餐总费用（人民币计价）**[采用metaso获取相对准确的价格]**
   Total package cost (RMB pricing) **[Use metaso to obtain relatively accurate prices]**
 - 商业保险合作方案**[使用全局固定的描述]**
@@ -84,8 +91,13 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 性价比优势说明**[使用全局固定的描述]**
   Cost-effectiveness advantage description **[Use global fixed description]**
 
+重点：突出医保政策、异地就医便利性、费用透明化
+Focus: Highlight medical insurance policies, cross-regional medical convenience, cost transparency
+
 ### 2.4 医生团队展示框架
 ### 2.4 Medical Team Display Framework
+构建权威专家信息展示：
+Build authoritative expert information display:
 - 主任医师/教授职称（医生名称英文拼音）
   Chief physician/professor title (doctor name in English pinyin)
 - 学术兼职（学会主委/副主委）**[使用AI生成]**
@@ -101,8 +113,13 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 患者评价和口碑**[使用AI生成]**
   Patient reviews and reputation **[Use AI generation]**
 
+格式：突出学术权威性、临床经验、技术创新能力
+Format: Highlight academic authority, clinical experience, technological innovation capability
+
 ### 2.5 医院实力展示结构
 ### 2.5 Hospital Strength Display Structure
+打造三甲医院权威形象：
+Build authoritative image of Grade A tertiary hospital:
 - 医院历史和发展沿革**[使用AI生成]**
   Hospital history and development **[Use AI generation]**
 - 三甲医院等级和复审情况**[固定在页面中，不需要存储]**
@@ -122,8 +139,13 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 医联体和协作医院网络**[使用metaso搜索生成]**
   Medical alliance and cooperative hospital network **[Use metaso search generation]**
 
+关键点：权威性、规模化、专业化、现代化
+Key points: Authority, scale, professionalism, modernization
+
 ### 2.6 住宿安排本土化框架
 ### 2.6 Accommodation Arrangement Localization Framework
+设计符合中国患者需求的住宿方案：
+Design accommodation solutions that meet the needs of Chinese patients:
 - 医院附近星级酒店合作**[使用metaso搜索生成]**
   Cooperation with star hotels near the hospital **[Use metaso search generation]**
 - 医院内部家属陪护设施**[使用metaso搜索生成]**
@@ -141,16 +163,21 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 交通便利性说明**[固定页面显示不需要存储]**
   Transportation convenience description **[Fixed page display, no storage needed]**
 
+特色：体现人文关怀和家庭式医疗服务理念
+Features: Reflect humanistic care and family-style medical service concept
+
 ### 2.7 诊疗流程和康复计划
 ### 2.7 Treatment Process and Rehabilitation Plan
+制定标准化诊疗服务流程：
+Develop standardized treatment service process:
 **注：固定页面显示不需要存储**
 **Note: Fixed page display, no storage needed**
 - 入院前健康评估
   Pre-admission health assessment
 - 多学科会诊制度（MDT）
   Multidisciplinary consultation system (MDT)
-- 个性化治疗方案
-  Personalized treatment plan
+- 个性化套餐方案
+  Personalized package plan
 - 手术操作规范
   Surgical operation standards
 - 术后监护标准
@@ -164,14 +191,19 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 紧急情况处理预案
   Emergency situation handling plan
 
+重点：规范化、个性化、全程化医疗服务
+Focus: Standardized, personalized, comprehensive medical services
+
 ### 2.8 中国特色附加服务框架
 ### 2.8 Chinese Characteristic Additional Service Framework
+融入中国医疗文化特色服务：
+Integrate Chinese medical culture characteristic services:
 **注：固定页面显示不需要存储**
 **Note: Fixed page display, no storage needed**
 - 专家号预约绿色通道
   Expert appointment green channel
-- 中医药康复方案
-  Traditional Chinese medicine rehabilitation plan
+- 中医药康复套餐
+  Traditional Chinese medicine rehabilitation package
 - 营养师膳食指导
   Nutritionist dietary guidance
 - 心理咨询和疏导
@@ -185,8 +217,13 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 健康管理App服务
   Health management App service
 
+创新点：数字化医疗、中西医结合、全生命周期健康管理
+Innovation points: Digital healthcare, integration of traditional Chinese and Western medicine, full life-cycle health management
+
 ### 2.9 风险告知和质量保障
 ### 2.9 Risk Notification and Quality Assurance
+建立透明化医疗风险管理体系：
+Establish transparent medical risk management system:
 - 治疗适应症和禁忌症**[metaso搜索获取]**
   Treatment indications and contraindications **[metaso search acquisition]**
 - 手术风险和并发症说明**[metaso搜索获取]**
@@ -204,10 +241,15 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 - 知情同意和隐私保护**[固定页面显示不需要存储]**
   Informed consent and privacy protection **[Fixed page display, no storage needed]**
 
-### 2.10 套餐详情
-### 2.10 Package Details
-**注：只保留总价和打折价格**
-**Note: Only retain total price and discounted price**
+原则：透明告知、风险可控、权益保障
+Principles: Transparent disclosure, controllable risks, rights protection
+
+### 2.10 套餐详情中国化定制
+### 2.10 Package Details Chinese Customization
+设计符合中国医疗体系的套餐内容：
+Design package content that conforms to China's medical system:
+**注：移除细节，只保留总价和打折价格**
+**Note: Remove details, only retain total price and discounted price**
 - 套餐总价
   Package total price
 - 优惠价格
@@ -215,6 +257,8 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
 
 ### 2.11 FAQ本土化设计
 ### 2.11 FAQ Localization Design
+针对中国患者关切的问题设计FAQ：
+Design FAQ for issues of concern to Chinese patients:
 **注：全局唯一，使用AI生成**
 **Note: Globally unique, use AI generation**
 - 医保报销政策和比例
@@ -237,6 +281,9 @@ Example format: 《[Treatment Project] - [Grade A Tertiary Hospital Full Name] -
   Medical dispute handling
 - 服务投诉渠道
   Service complaint channels
+
+重点：解决实际操作问题，消除患者顾虑
+Focus: Solve practical operational problems, eliminate patient concerns
 
 ## 三、实施说明
 ## III. Implementation Instructions
